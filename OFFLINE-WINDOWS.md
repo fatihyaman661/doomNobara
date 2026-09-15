@@ -45,6 +45,40 @@ the platform-specific artifacts stripped:
   `.local/state/`, and `.local/env` (a dump of this machine's Linux `PATH` —
   copying it to Windows would poison `exec-path`).
 
+### Or: download the prebuilt bundle
+
+A prebuilt bundle is published as a **release asset** (it is 835 MB, far past
+GitHub's 100 MB per-file limit for tracked files, so it is not in the repo):
+
+<https://github.com/fatihyaman661/doomNobara/releases>
+
+Current build:
+
+| | |
+|---|---|
+| File | `doom-offline-bundle.tar.zst` |
+| Size | 875,068,405 bytes (835 MB) — 1.1 GB uncompressed |
+| SHA-256 | `8b502fae0a302cbb93c2b0060d81fd387f1a0690961e4b58f0056f7c0abfdb06` |
+| Emacs | 30.2 |
+| doomemacs | `01d68aaf6bd7db073365385cd82e1ad7e815295c` |
+| doom+ | `d57ab52a3425b6d39564fb011b0e9571da0e270f` |
+| Package repos | 296 |
+
+Verify it after copying, **before** trusting a 24-hour offline install to it:
+
+```bash
+# Linux
+sha256sum -c doom-offline-bundle.tar.zst.sha256
+```
+
+```cmd
+:: Windows
+certutil -hashfile doom-offline-bundle.tar.zst SHA256
+```
+
+The archive also carries `emacs/BUNDLE-MANIFEST.txt`, recording the exact
+commits and repo count it was built from.
+
 ## Part 2 — On an online Windows machine: fetch binaries
 
 Download these, then copy them to the USB stick. Versions are what this config
